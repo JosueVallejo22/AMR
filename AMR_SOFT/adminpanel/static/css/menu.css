@@ -1,0 +1,17 @@
+
+/* Ajustar el tamaño de las cartas en pantallas pequeñas */
+.card-limited {
+    max-width: 300px; /* Tamaño máximo para pantallas grandes */
+    margin: 0 auto; /* Centra la carta */
+}
+@media (max-width: 576px) {
+    .card-limited {
+        max-width: 90%; /* Reduce el tamaño en pantallas pequeñas */
+    }
+}
+
+
+/* Ajustar el espacio entre las cartas */
+.card-body {
+    margin-bottom: 10px;
+}

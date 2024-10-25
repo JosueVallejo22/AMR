@@ -1,32 +1,31 @@
 {% extends 'base.html' %}
-<!--ESTA LINEA DE CODIGO HEREDA LA PLANTILLA COMPLETA QUE SE ENCUENTRA EN ESE DIRECTORIO-->
-{% load static %} {% block title %} Menu Principal {% endblock %}
-<!--ESTA LINEA DE CODIGO COLOCA EL TITULO A LA NUEVA PAGINA-->
+{% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 {% endblock %} 
+{% block title %} Menu Admin {% endblock %}
 
 {% block content %}
+
 <div class="main-content pb-5">
     <div class="row mt-5 mx-5">
         <div class="col-md-6 mb-3">
             <div class="card bg-success text-white card-limited">
                 <img src="../static/img/jugador_ico.png" class="card-img-top img-fluid" alt="jugador_ico">
                 <div class="card-body text-center">
-                    <a href="{% url 'listjugadores' %}" class="btn btn-primary">MODULO JUGADORES</a>
+                    <a href="{% url 'jugadores' %}" class="btn btn-primary">SUBMODULO_PERMISOS</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-3"> 
+        <div class="col-md-6 mb-3">
             <div class="card bg-success text-white card-limited">
                 <img src="../static/img/valoracion_ico.png" class="card-img-top img-fluid" alt="valoracion_ico">
                 <div class="card-body text-center">
-                    <a href="#" class="btn btn-primary">MODULO VALORACIONES</a>
+                    <a href="#" class="btn btn-primary">SUBMODULO_ROLES_PERMISOS</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <br>
-  
 {% endblock %}

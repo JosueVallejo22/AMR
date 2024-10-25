@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Menu Admin 
+{% endblock %}
+
+{% block content %}
+<div class="main-content pb-5">
+    <div class="row mt-5 mx-5">
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white card-limited">
+                <img src="../static/img/jugador_ico.png" class="card-img-top img-fluid" alt="jugador_ico">
+                <div class="card-body text-center">
+                    <a href="{% url 'estados' %}" class="btn btn-primary">MODULO ESTADOS</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white card-limited">
+                <img src="../static/img/valoracion_ico.png" class="card-img-top img-fluid" alt="valoracion_ico">
+                <div class="card-body text-center">
+                    <a href="{% url 'roles' %}" class="btn btn-primary">MODULO ROLES</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white card-limited">
+                <img src="../static/img/valoracion_ico.png" class="card-img-top img-fluid" alt="valoracion_ico">
+                <div class="card-body text-center">
+                    <a href="{% url 'permisos' %}" class="btn btn-primary">MODULO PERMISOS</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white card-limited">
+                <img src="../static/img/valoracion_ico.png" class="card-img-top img-fluid" alt="valoracion_ico">
+                <div class="card-body text-center">
+                    <a href="#" class="btn btn-primary">MODULO USUARIOS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

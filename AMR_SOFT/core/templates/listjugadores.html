@@ -6,39 +6,34 @@
  {% endblock %} 
 
 {% block content %} 
- <Div class="container">
+ <Div class="container bg-white ">
     <div class="row mt-5 mx-5">
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Noº</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Jugador</th>
+                <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <th scope="row">1</th>
+                <td scope="col">Foto</td>
                 <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>
-                    <button></button>
-                </td>
+                <td>Editar / Eliminar</td>
+
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-8">
+            <div class="d-grid gap-2 col-6">
+                <button class="btn btn-success" type="button" onclick="location.href='jugadores'">Cargar nuevo jugador</button>
+            </div>
+        </div>
     </div>
  </Div>
 {% endblock %}
