@@ -1,0 +1,39 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: hsl(0, 0%, 40%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav {
+    background-color: #004d40;
+}
+
+.navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}
+
+.nav-link:hover {
+    color: rgb(255, 230, 0);
+}
+
+/* Estilo para el contenido principal */
+.main-content {
+    padding: 40px; /* Hace que el contenido principal crezca para ocupar el espacio disponible */
+}
+
+
+/* Footer siempre al final de la página, pero sin tapar el contenido */
+.footer {
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed; /* Asegura que no tape el contenido */
+    bottom: 0;
+    left: 0;
+}
