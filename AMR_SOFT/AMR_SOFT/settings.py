@@ -75,17 +75,17 @@ WSGI_APPLICATION = 'AMR_SOFT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'AMR_DB',
-        'USER':'',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'',
-        'OPTIONS':{'driver': 'ODBC Driver 17 for SQL Server'}
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'AMR_DB',
+#         'USER':'',
+#         'PASSWORD':'',
+#         'HOST':'localhost',
+#         'PORT':'',
+#         'OPTIONS':{'driver': 'ODBC Driver 17 for SQL Server'}
+#     }
+# }
 
 
 # Password validation
