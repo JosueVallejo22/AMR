@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
-
+from AMR_SOFT import settings
 
 # Create your models here.
 #MODELOS PARA EL APARTADO DE ROLES, USUARIOS, PERMISOS Y ESTADO
@@ -175,5 +175,10 @@ class Jugador(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}" 
     
+    def get_image(self):
+        if self.imagen:
+            return '{}{}'.format(settings.MEDIA_URL, self.imagen)
+        return '{}{}'.format(settings.STATIC_URL, 'static/img/default/empty.jpg')
+
     class Meta:
         verbose_name_plural = "Jugadores"

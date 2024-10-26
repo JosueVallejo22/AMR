@@ -12,3 +12,7 @@ def roles(request):
     return render(request, 'menu_roles.html')
 def permisos(request):
     return render(request, 'menu_permisos.html')
+def subpermisos(request):
+    return render(request, 'permisos.html')
+def sub_roles_permisos (request):
+    return render(request, 'roles-permisos.html')

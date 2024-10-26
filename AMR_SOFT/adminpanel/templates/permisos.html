@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Estados{% endblock %}
+
+{% block content %}
+<div class="main-content container-fluid">
+    <h1>MODULO PERMISOS</h1>
+    <div class="row">
+        <!-- Columna del formulario -->
+        <div class="col-md-6">
+            <div class="mb-4">
+                <label for="formGroupExampleInput" class="form-label">PERMISO</label>
+                <input type="text" class="form-control" placeholder="Ingrese un permiso">
+            </div>
+            <div class="mb-4">
+                <label for="formGroupExampleInput" class="form-label">DESCRIPCION</label>
+                <input type="text" class="form-control" placeholder="Ingrese una descripcion">
+            </div>
+            <div class="mb-4">
+                <label for="formGroupExampleInput" class="form-label">Seleccione un estado</label>
+                <select class="form-select">
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+        
+        <!-- Columna de la tabla -->
+        <div class="col-md-6 pt-4">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Permiso</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Crear</td>
+                    <td>hola</td>
+                    <td>Activo</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Editar</td>
+                    <td>hola</td>
+                    <td>Activo</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Eliminar</td>
+                    <td>hola</td>
+                    <td>Activo</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
