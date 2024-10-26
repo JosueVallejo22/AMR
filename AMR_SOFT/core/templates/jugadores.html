@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}{% block title %} REGISTRO DE JUGADORES {% endblock %}
+{% load static %} 
+{% block title %} REGISTRO DE JUGADORES {% endblock %}
 
 {% block extra_css %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"> 
@@ -14,6 +15,7 @@
             </div>
             <div class="card-body">
                 <h4 class="card-title">Datos de jugadores</h4>
+                
                 {% include 'formulariojug.html' %}
 
             </div>

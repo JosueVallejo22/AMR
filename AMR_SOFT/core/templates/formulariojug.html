@@ -1,8 +1,6 @@
-<form enctype="multipart/form-data" method="post">
-
-    <div class=" mb-3">
-        <label for="name" class="form-label">Nombres</label>
-        <input type="text" class="form-control" id="txtname"name="txtname">
-    </div> 
-
+<form method="post" action="{{ action_save }}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Esto renderiza los campos del formulario -->
+    <button type="submit">{{ boton1 }}</button>
+    <a href="{{ listar_url }}">{{ boton2 }}</a>
 </form>

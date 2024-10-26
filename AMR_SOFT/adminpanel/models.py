@@ -4,13 +4,17 @@ from django.contrib.auth.hashers import make_password, check_password
 # Create your models here.
 class Estado(models.Model):
     estado = models.CharField(max_length= 15, unique=True)
-    descripcion = models.CharField(max_length= 30, blank=True)
+    descripcion = models.CharField(max_length= 50, blank=True)
 
     def __str__(self):
-        return self.estado
+        return self.estado.upper()
     
     class Meta:
         verbose_name_plural = "Estados"
+
+    def save(self, *args, **kwargs):
+        self.estado = self.estado.upper()
+        super().save(*args, **kwargs)
     
 class Rol(models.Model):
     rol = models.CharField(max_length=50, unique=True)
@@ -24,7 +28,7 @@ class Rol(models.Model):
 
 class Permiso(models.Model):
     permiso = models.CharField(max_length=50, unique=True)
-    descripcion = models.TextField(blank=True)
+    descripcion = models.CharField(max_length=20)
     estado = models.ForeignKey(Estado, on_delete=models.PROTECT)
     
     def __str__(self):

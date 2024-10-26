@@ -16,34 +16,64 @@
                 Listado de jugadores
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table" >
                     <thead>
                     <tr>
-                        <th scope="col">Noº</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Jugador</th>
-                        <th scope="col">Acciones</th>
+                        <th>#</th> 
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>País</th>
+                        <th>Puesto</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Altura (cm)</th>
+                        <th>Peso (kg)</th>
+                        <th>Foto</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td scope="col">Foto</td>
-                        <td>Elkins</td>
-                        <td> 
-                            <a name="" id="" type="button" class="btn btn-info" href="#" role="button">Editar</a> 
-                            <a name="" id="" type="button" class="btn btn-danger" href="#" role="button">Eliminar</a>
-                        </td>
-        
-                    </tr>
+                    {% for jugador in jugadores %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ jugador.nombre }}</td>
+                            <td>{{ jugador.apellido }}</td>
+                            <td>{{ jugador.pais }}</td>
+                            <td>{{ jugador.puesto }}</td>
+                            <td>{{ jugador.fecha_nac }}</td>
+                            <td>{{ jugador.altura }}</td>
+                            <td>{{ jugador.peso }}</td>
+                            <td>{{ jugador.estado }}</td>
+                            <td>
+                                {% if jugador.foto %}
+                                    <img src="{{ jugador.foto.url }}" alt="{{ jugador.nombre }}" style="width: 50px; height: auto;">
+                                {% else %}
+                                    Sin foto
+                                {% endif %}
+                            </td>
+                            <td> 
+                                <a name="" id="" type="button" class="btn btn-info" href="#" role="button">Editar</a> 
+                                <a name="" id="" type="button" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                            </td>
+                            <td>
+                                
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10">No hay jugadores registrados.</td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <div class="row justify-content-md-center">
-                <di class="col-md-auto">
-                        <button class="btn btn-success" type="button" onclick="location.href='jugadores'">Cargar nuevo jugador</button>
+
+            <a href="{{ crear_url }}">
+                <div class="row justify-content-md-center">
+                    <di class="col-md-auto">
+                            <button class="btn btn-success" type="button" onclick="location.href='#'">Cargar nuevo jugador</button>
+                    </div>
                 </div>
-            </div>
+            </a>
             </div>
         </div>
     </div>

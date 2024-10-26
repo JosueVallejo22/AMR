@@ -4,47 +4,71 @@
 
 {% block content %}
 <div class="main-content container-fluid">
-    <h1>MODULO ESTADOS</h1>
+    <h1 class="my-4 text-center">MÓDULO ESTADOS</h1>
     <div class="row">
         <!-- Columna del formulario -->
         <div class="col-md-6">
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">ESTADO</label>
-                <input type="text" class="form-control" placeholder="Ingrese un estado">
-            </div>
-            <div class="mb-4">
-                <label for="formGroupExampleInput2" class="form-label">Descripción</label>
-                <input type="text" class="form-control" placeholder="Ingrese una descripción del estado">
-            </div>
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <form method="post" action="{% url 'menu_estado' %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                
+                {% if form.instance.id %}
+                <input type="hidden" name="id" value="{{ form.instance.id }}">
+                {% endif %}
+                
+                <div class="mb-4">
+                    <label for="estado" class="form-label">ESTADO (máx. 15 caracteres)</label>
+                    <input type="text" name="estado" class="form-control" 
+                           value="{{ form.estado.value|default_if_none:'' }}" 
+                           placeholder="Ingrese el estado" maxlength="15">
+                </div>
+                <div class="mb-4">
+                    <label for="descripcion" class="form-label">DESCRIPCION (máx. 50 caracteres)</label>
+                    <input type="text" name="descripcion" class="form-control" 
+                           value="{{ form.descripcion.value|default_if_none:'' }}" 
+                           placeholder="Ingrese la descripción" maxlength="50">
+                </div>
+              
+                <button type="submit" class="btn btn-success">{{ form.instance.id|yesno:"Actualizar,Guardar" }}</button>
+            </form>
         </div>
         
         <!-- Columna de la tabla -->
         <div class="col-md-6 pt-4">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Activo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Inactivo</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for estado in estados %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ estado.estado }}</td>
+                        <td>{{ estado.descripcion }}</td>
+                        <td class="text-center">
+                          <a href="?id={{ estado.id }}" class="btn btn-warning btn-sm">Editar</a>
+                          <form method="post" action="{% url 'menu_estado' %}" style="display:inline;">
+                              {% csrf_token %}
+                              <input type="hidden" name="id" value="{{ estado.id }}">
+                              <input type="hidden" name="action" value="delete">
+                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                          </form>
+                        </td>              
+                      </tr>
+                      {% empty %}
+                      <tr>
+                        <td colspan="4" class="text-center">No hay estados registrados</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

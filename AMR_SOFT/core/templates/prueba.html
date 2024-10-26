@@ -130,5 +130,86 @@
       </div>
   </div>
 
+<!-- vcositas de formulario jugador"> -->
+  {% load static %}
+<div class="container">
+    <div class="row">
+        <form enctype="multipart/form-data" method="post" action="{{ action_save }}">
+            {% csrf_token %}
+            <div >
+                <label for="name" class="form-label">Nombres</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.nombre }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Apellidos</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.apellido }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Fecha de nacimiento</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.fecha_nac }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Nacionalidad</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.pais }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Altura</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.altura }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Peso</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.peso }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Pierna Habil</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.pierna_habil }}
+            </div>
+            <div>
+                <label for="name" class="form-label">Foto</label>
+                <!-- <input type="text" class="form-control" id="txtname"name="txtname"> -->
+                {{ form.imagen }}
+            </div>
+
+            {% include 'botones.html' %}
+        </form>
+    </div>
+</div> 
+
+<!-- {% block js %}
+<script type="application/javascript">
+
+    {% if form.errors %}
+        var errors = '';
+        {% for field in form %}
+            {% for error in field.errors %}
+                errors += '{{ error|escapejs }}<br>';  // Cada error de campo en una nueva línea usando <br>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            errors += '{{ error|escapejs }}<br>';  // Cada error no asociado a un campo en una nueva línea usando <br>
+        {% endfor %}
+        Swal.fire({
+            title: 'Error!',
+            html: errors,  // Usamos html en lugar de text para interpretar <br> como saltos de línea
+            icon: 'error',
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                content: 'swal2-content'
+            }
+        });
+    {% endif %}
+
+    </script>
+
+{% endblock %} -->
+
 </body>
 </html>

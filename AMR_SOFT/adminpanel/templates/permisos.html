@@ -1,30 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Estados{% endblock %}
+{% block title %}Módulo Permisos{% endblock %}
 
 {% block content %}
 <div class="main-content container-fluid">
-    <h1>MODULO PERMISOS</h1>
+    <h1>Módulo Permisos</h1>
     <div class="row">
         <!-- Columna del formulario -->
         <div class="col-md-6">
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">PERMISO</label>
-                <input type="text" class="form-control" placeholder="Ingrese un permiso">
-            </div>
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">DESCRIPCION</label>
-                <input type="text" class="form-control" placeholder="Ingrese una descripcion">
-            </div>
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">Seleccione un estado</label>
-                <select class="form-select">
-                    <option value="1">Activo</option>
-                    <option value="2">Inactivo</option>
-                </select>
-            </div>
-            
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <form method="POST" action="{% url 'permiso_view' %}">  <!-- Cambia 'permisos_view' por el nombre correcto de tu URL -->
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="formGroupExampleInput" class="form-label">PERMISO</label>
+                    <input type="text" class="form-control" name="permiso" placeholder="Ingrese un permiso" value="{% if permiso_edit %}{{ permiso_edit.permiso }}{% endif %}">
+                </div>
+                <div class="mb-4">
+                    <label for="formGroupExampleInput" class="form-label">DESCRIPCION</label>
+                    <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una descripción" value="{% if permiso_edit %}{{ permiso_edit.descripcion }}{% endif %}">
+                </div>
+                <div class="mb-4">
+                    <label for="formGroupExampleInput" class="form-label">Seleccione un estado</label>
+                    <select class="form-select" name="estado">
+                        {% for estado in estados %}
+                        <option value="{{ estado.id }}" {% if permiso_edit and permiso_edit.estado.id == estado.id %}selected{% endif %}>{{ estado.estado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <input type="hidden" name="id" value="{% if permiso_edit %}{{ permiso_edit.id }}{% endif %}"> <!-- Campo oculto para el ID del permiso -->
+                
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
         </div>
         
         <!-- Columna de la tabla -->
@@ -34,33 +40,29 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Permiso</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Descripción</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Crear</td>
-                    <td>hola</td>
-                    <td>Activo</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Editar</td>
-                    <td>hola</td>
-                    <td>Activo</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Eliminar</td>
-                    <td>hola</td>
-                    <td>Activo</td>
-                    <td>@mdo</td>
-                  </tr>
+                  {% for permiso in permisos %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ permiso.permiso }}</td>
+                      <td>{{ permiso.descripcion }}</td>
+                      <td>{{ permiso.estado.estado }}</td>
+                      <td>
+                          <a href="?id={{ permiso.id }}" class="btn btn-warning">Editar</a>
+                          <form method="POST" action="{% url 'permiso_view' %}" style="display:inline;">
+                              {% csrf_token %}
+                              <input type="hidden" name="id" value="{{ permiso.id }}">
+                              <input type="hidden" name="action" value="inactivate">
+                              <button type="submit" class="btn btn-danger">Inactivar</button>
+                          </form>
+                      </td>
+                    </tr>
+                  {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -8,19 +8,32 @@
     <div class="row">
         <!-- Columna del formulario -->
         <div class="col-md-6">
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">ROL</label>
-                <input type="text" class="form-control" placeholder="Ingrese un rol">
-            </div>
-            <div class="mb-4">
-                <label for="formGroupExampleInput" class="form-label">Seleccione un estado</label>
-                <select class="form-select">
-                    <option value="1">Activo</option>
-                    <option value="2">Inactivo</option>
-                </select>
-            </div>
-            
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <form method="POST">
+                {% csrf_token %}
+                {% if rol_edit %}
+                <input type="hidden" name="id" value="{{ rol_edit.id }}">
+                {% endif %}
+                <div class="mb-4">
+                    <label for="rol" class="form-label">ROL</label>
+                    <input type="text" name="rol" class="form-control" 
+                           value="{% if rol_edit %}{{ rol_edit.rol }}{% endif %}" 
+                           placeholder="Ingrese un rol" required>
+                </div>
+                <div class="mb-4">
+                    <label for="estado" class="form-label">Seleccione un estado</label>
+                    <select name="estado" class="form-select" required>
+                        {% for estado in estados %}
+                        <option value="{{ estado.id }}" {% if rol_edit and rol_edit.estado.id == estado.id %}selected{% endif %}>{{ estado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                {% if rol_edit %}
+                <button type="submit" class="btn btn-success">Actualizar</button>
+                {% else %}
+                <button type="submit" class="btn btn-success">Guardar</button>
+                {% endif %}
+            </form>
         </div>
         
         <!-- Columna de la tabla -->
@@ -35,18 +48,23 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for rol in roles %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Administrador</td>
-                    <td>Activo</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ rol.rol }}</td>
+                    <td>{{ rol.estado }}</td>
+                    <td>
+                      <form method="POST" action="{% url 'inactivar_rol' rol.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Inactivar</button>
+                      </form>
+                      <form method="GET" action="{% url 'rol_view' %}">
+                        <input type="hidden" name="id" value="{{ rol.id }}">
+                        <button type="submit" class="btn btn-warning">Editar</button>
+                      </form>
+                    </td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Usuario</td>
-                    <td>Activo</td>
-                    <td>@fat</td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
             </table>
         </div>
